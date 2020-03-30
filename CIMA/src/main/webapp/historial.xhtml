@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+	<title>Historial</title>
+
+</h:head>
+<body>
+
+	<h:form>
+
+		<p:dataTable var="resultado"
+			value="#{resultadoController.listaRespuestas}">
+			<p:column headerText="Nivel">
+				<h:outputText value="#{resultado.nivel.niv_nombre}" />
+			</p:column>
+
+			<p:column headerText="Edad">
+				<h:outputText value="#{resultado.res_edad}" />
+			</p:column>
+
+			<p:column headerText="Fecha">
+				<h:outputText value="#{resultado.res_fecha}" />
+			</p:column>
+
+			<p:column headerText="A">
+				<h:outputText value="#{resultado.res_A}" />
+			</p:column>
+
+			<p:column headerText="N">
+				<h:outputText value="#{resultado.res_N}" />
+			</p:column>
+			<p:column headerText="P">
+				<h:outputText value="#{resultado.res_P}" />
+			</p:column>
+
+		</p:dataTable>
+
+
+
+	</h:form>
+
+</body>
+</html>

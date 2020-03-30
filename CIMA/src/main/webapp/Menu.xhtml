@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+</h:head>
+<body>
+	<h:form>
+		<p:messages id="messages" showDetail="true" closable="true">
+			<p:autoUpdate />
+		</p:messages>
+		<div align="right">
+
+			Sesión:
+			<p:outputLabel value="#{menuController.per.per_apellido}" />
+
+			<p:outputLabel value=" " />
+
+			<p:outputLabel value="#{menuController.per.per_nombre}" />
+
+
+		</div>
+		<br />
+
+		<p:layout>
+
+
+			<p:layoutUnit position="west" resizable="true">
+				<p:panelMenu style="width:300px">
+					<p:submenu label="Administrador">
+						<p:menuitem value="Crear Terapista"
+							action="#{menuController.ingresarPersona()}" icon="pi pi-save" />
+						<p:menuitem value="Listar"
+							action="#{menuController.ingresarPersona()}" icon="pi pi-refresh" />
+					</p:submenu>
+					<p:submenu label="Terapista">
+						<p:menuitem value="Crear Estudiante"
+							action="#{menuController.ingresarPersona()}" icon="pi pi-save" />
+						<p:menuitem value="Crear Edsm" action="#{menuController.crearEdsm()}"
+							ajax="false" icon="pi pi-times" />
+						<p:menuitem value="Listar Edsm" action="#{menuView.delete}"
+							ajax="false" icon="pi pi-times" />
+					</p:submenu>
+					
+					<p:submenu label="Usuario">
+
+						<p:menuitem value="Resolver EDSM" url="http://www.primefaces.org"
+							icon="pi pi-home" />
+					</p:submenu>
+				</p:panelMenu>
+			</p:layoutUnit>
+
+
+			<p:layoutUnit position="center">
+					
+				<h:outputLabel  value="Apellido: " />
+				<p:inputText   value="#{menuController.buscarApellido}"/>
+				<p:commandButton value="Buscar" id="ajax"  action="#{menuController.Buscar()}" update="@form" style="margin-right:20px;" styleClass="ui-priority-primary" />
+				<br/>
+				<p:separator />
+				
+				<p:panel id="PanelEdsm" header="Edsm Creados"
+			style="margin-bottom:20px">
+			<h:panelGrid columns="2" cellpadding="10">
+
+				<p:dataTable id="tablacreados" var="car"
+					value="#{menuController.listaEdsmEncargado}">
+					<p:column headerText="Detalle">
+						<h:outputText value="#{car.eds_detalle}" />
+					</p:column>
+
+					<p:column headerText="Nombre">
+						<h:outputText value="#{car.persona.per_nombre}" />
+					</p:column>
+
+					<p:column headerText="Apellido">
+						<h:outputText value="#{car.persona.per_apellido}" />
+					</p:column>
+
+					<p:column headerText="Fecha ">
+						<h:outputText value="#{car.eds_fecha}" />
+					</p:column>
+
+					<p:column headerText="Acción">
+						<p:commandButton value="Resolver Edsm" 
+							action="#{menuController.desarrollaredsm(car)}" style="margin-right:20px;"
+							ajax="false" />
+					</p:column>
+					
+					<p:column headerText="Resultados">
+						<p:commandButton value="Resultado" 
+							action="#{menuController.resultadoEdsm(car)}" style="margin-right:20px;"
+							ajax="false" />
+					</p:column>
+					
+					<p:column headerText="Historial">
+						<p:commandButton value="Historial" 
+							action="#{menuController.resultadoHistorial(car)}" style="margin-right:20px;"
+							ajax="false" />
+					</p:column>
+					
+				</p:dataTable>
+			</h:panelGrid>
+			
+			
+			
+		</p:panel>
+
+			</p:layoutUnit>
+		</p:layout>
+
+
+
+
+
+		<p:growl>
+			<p:autoUpdate />
+		</p:growl>
+
+
+		<p:separator />
+
+	</h:form>
+</body>
+</html>

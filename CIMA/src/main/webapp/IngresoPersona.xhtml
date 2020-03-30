@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Ingresar Persona</title>
+</h:head>
+<body>
+
+	<h:form>
+	<p:growl id="growl" life="2000" />
+		<h:panelGrid columns="2" cellpadding="5">
+
+			<h:outputText value="Usuario:" />
+			<p:inputText value="#{personaController.login.log_usuario}" />
+			<h:outputText value="Contraseña:" />
+			<p:password id="feedback"
+				value="#{personaController.login.log_contrasena}" feedback="true" />
+			<h:outputText value="Nombre: " />
+			<p:inputText value="#{personaController.persona.per_nombre}" />
+			<h:outputText value="Apellido:" />
+			<p:inputText value="#{personaController.persona.per_apellido}" />
+			<h:outputText value="Fecha Nacimiento:" />
+			<p:calendar id="button" value="#{personaController.persona.per_fecha_nacimiento}" showOn="button" />
+			
+			<p:outputLabel for="basic" value="Rol" />
+       		<p:selectOneListbox id="basic" value="#{personaController.rol.rol_id}">
+            <f:selectItem itemLabel="Administrador" itemValue="1" />
+            <f:selectItem itemLabel="Terapista" itemValue="2" />
+            <f:selectItem itemLabel="Estudiante" itemValue="3" />
+        </p:selectOneListbox>
+        
+		</h:panelGrid>
+		<center>
+		<p:commandButton value="Guardar" action="#{personaController.guardar()}" style="margin-right:20px;" ajax="false" />
+		</center>
+	</h:form>
+
+</body>
+</html>

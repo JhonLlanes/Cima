@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+	<title>Encuesta Nivel 1</title>
+</h:head>
+<body>
+
+	<h:form>
+		<p:growl id="growl" showDetail="true" />
+
+		<h:panelGrid columns="5" cellpadding="5">
+
+			<h:outputText value="NumeroPregunta" />
+			<h:outputText value="Pregunta " />
+
+
+			<p:rating id="valor1" value="#{encuestaController.rating3}" stars="3"
+				cancel="true">
+				<p:ajax update="growl" listener="#{encuestaController.addMessage()}" />
+			</p:rating>
+
+
+				<p:rating id="valor2" value="#{encuestaController.rating3}"
+					stars="3" cancel="true">
+					<p:ajax update="growl"
+						listener="#{encuestaController.addMessage()}" />
+				</p:rating>
+				<p:rating id="valor3" value="#{encuestaController.rating3}"
+					stars="3" cancel="true">
+					<p:ajax update="growl"
+						listener="#{encuestaController.addMessage()}" />
+				</p:rating>
+		</h:panelGrid>
+		
+		<h:panelGrid columns="2" cellpadding="5">
+			<h:outputText value="Counter: " />
+			<h:outputText id="output" value="#{encuestaController.number}" />
+		</h:panelGrid>
+
+		<p:commandButton value="Siguiente"
+			action="#{encuestaController.increment()}" update="@form" />
+
+	</h:form>
+</body>
+</html>

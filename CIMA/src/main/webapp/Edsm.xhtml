@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+</h:head>
+<body>
+
+	<h:form>
+		<p:growl id="growl" life="2000" />
+
+		<p:panel id="basic" header="Crear EDSM" style="margin-bottom:20px">
+			<h:panelGrid columns="2" cellpadding="5">
+
+				<h:outputText value="Edsm Detalle" />
+				<p:inputText value="#{edsmController.edsmIngreso.eds_detalle}" />
+			</h:panelGrid>
+			<p:carousel value="#{edsmController.personaEstudiante}"
+				headerText="Seleccionar Estudiante" var="persona"
+				itemStyle="text-align:center" responsive="true">
+				<p:panelGrid columns="2" style="width:100%;margin:10px 0px"
+					columnClasses="label,value" layout="grid"
+					styleClass="ui-panelgrid-blank">
+					<h:outputText value="Nombre:" />
+					<h:outputText value="#{persona.per_nombre}" />
+
+					<h:outputText value="Apellido" />
+					<h:outputText value="#{persona.per_apellido}" />
+
+					<h:outputText value="Fecha Nacimiento" />
+					<h:outputText value="#{persona.per_fecha_nacimiento}"
+						style="color:#{car.color}" />
+				</p:panelGrid>
+				<p:growl id="growl" life="2000" />
+				<p:commandButton value="Seleccionar" update="growl"
+					action="#{edsmController.Guardar(persona)}"
+					style="margin-right:20px;" styleClass="ui-priority-primary" />
+			</p:carousel>
+			<center>
+				<p:commandButton value="Guardar" update="@form"
+					action="#{edsmController.craerEdsm()}" style="margin-right:20px;"
+					styleClass="ui-priority-primary" />
+			</center>
+
+		</p:panel>
+
+		<p:panel id="PanelEdsm" header="Edsm Creados"
+			style="margin-bottom:20px">
+			<h:panelGrid columns="2" cellpadding="10">
+
+				<p:dataTable id="tablacreados" var="car"
+					value="#{edsmController.listaEdsmEncargado}">
+					<p:column headerText="Detalle">
+						<h:outputText value="#{car.eds_detalle}" />
+					</p:column>
+
+					<p:column headerText="Nombre">
+						<h:outputText value="#{car.persona.per_nombre}" />
+					</p:column>
+
+					<p:column headerText="Apellido">
+						<h:outputText value="#{car.persona.per_apellido}" />
+					</p:column>
+
+					<p:column headerText="Fecha ">
+						<h:outputText value="#{car.eds_fecha}" />
+					</p:column>
+
+					<p:column headerText="Acción">
+						<p:commandButton value="Resolver Edsm" 
+							action="#{edsmController.desarrollaredsm(car)}" style="margin-right:20px;"
+							ajax="false" />
+					</p:column>
+					
+					<p:column headerText="Resultados">
+						<p:commandButton value="Resultado" 
+							action="#{edsmController.resultadoEdsm(car)}" style="margin-right:20px;"
+							ajax="false" />
+					</p:column>
+
+				</p:dataTable>
+			</h:panelGrid>
+		</p:panel>
+
+	</h:form>
+
+</body>
+</html>

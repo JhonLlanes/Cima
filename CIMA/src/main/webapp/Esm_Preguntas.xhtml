@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+	<title>Edsm Preguntas</title>
+
+</h:head>
+
+<style>
+.ui-widget {
+	font-size: 14px;
+}
+</style>
+
+<body>
+	<h:form>
+	
+		<h:panelGrid columns="1" style="margin-bottom:10px" cellpadding="5">
+		
+		<h:outputText value="#{edsm_PreguntaController.nombre}" />
+		
+		</h:panelGrid>
+			<center>
+				<p:selectOneButton value="#{edsm_PreguntaController.niv_bus}">
+					<f:selectItem itemLabel="Nivel 1" itemValue="1" />
+					<f:selectItem itemLabel="Nivel 2" itemValue="2" />
+					<f:selectItem itemLabel="Nivel 3" itemValue="3" />
+					<f:selectItem itemLabel="Nivel 4" itemValue="4" />
+					<p:ajax update="@form" listener="#{edsm_PreguntaController.respuestaNivel1()}" />
+				</p:selectOneButton>
+			</center>
+		
+		<br />
+	
+
+		<p:panel id="basic" header="Basic" footer="Movie Details"
+			style="margin-bottom:20px">
+
+			<p:dataTable var="pre" value="#{edsm_PreguntaController.edsmTemp}" stickyHeader="true" stickyTopAt=".layout-topbar">
+				<p:column headerText="" groupRow="true"
+					style="width:100px; font-size: 9px ;text-align: center">
+					<h:outputText value="#{pre.preguntas.pre_nombre}" />
+				</p:column>
+
+				<p:column headerText="Pregunta">
+					<h:outputText value="#{pre.preguntas.pre_descripcion}" />
+				</p:column>
+
+				<p:column headerText="Observador">
+					<p:selectOneRadio id="observador" value="#{pre.eds_pre_observador}"
+						unselectable="true">
+						<f:selectItem itemLabel="+" itemValue="+" />
+						<f:selectItem itemLabel="+/-" itemValue="+/-" />
+						<f:selectItem itemLabel="-" itemValue="-" />
+						<f:selectItem itemLabel="NA" itemValue="NA" />
+					</p:selectOneRadio>
+				</p:column>
+
+				<p:column headerText="Padre">
+					<p:selectOneRadio id="padre" value="#{pre.eds_pre_informador}"
+						unselectable="true">
+						<f:selectItem itemLabel="+" itemValue="+" />
+						<f:selectItem itemLabel="+/-" itemValue="+/-" />
+						<f:selectItem itemLabel="-" itemValue="-" />
+						<f:selectItem itemLabel="NA" itemValue="NA" />
+					</p:selectOneRadio>
+				</p:column>
+
+				<p:column headerText="" style=" width:80px; text-align: center">
+					<p:growl id="growl" life="2000" />
+					<p:commandButton value="Guardar" update="growl"
+						action="#{edsm_PreguntaController.actualizarEdsmPreguntas(pre)}"
+						style="margin-right:20px;" styleClass="ui-priority-primary" />
+				</p:column>
+			</p:dataTable>
+
+		</p:panel>
+	</h:form>
+
+</body>
+</html>

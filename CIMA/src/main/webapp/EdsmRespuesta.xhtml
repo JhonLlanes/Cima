@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+	<title>Resultados</title>
+
+</h:head>
+<body>
+
+	<h:form>
+	
+	<p:growl id="growl" showDetail="true" sticky="true" />  
+
+		<h:panelGrid columns="1" style="margin-bottom:10px" cellpadding="5">
+
+			<h:outputText value="#{edsmResultadosController.nombre}" />
+			<h:outputText value="#{edsmResultadosController.edad}" />
+
+		</h:panelGrid>
+		<center>
+			<p:selectOneButton value="#{edsmResultadosController.niv_bus}">
+				<f:selectItem itemLabel="Nivel 1" itemValue="1" />
+				<f:selectItem itemLabel="Nivel 2" itemValue="2" />
+				<f:selectItem itemLabel="Nivel 3" itemValue="3" />
+				<f:selectItem itemLabel="Nivel 4" itemValue="4" />
+				<p:ajax update="@form"
+					listener="#{edsmResultadosController.respuestaNivel1()}" />
+			</p:selectOneButton>
+		</center>
+
+		<br />
+
+		<p:dataTable var="car"
+			value="#{edsmResultadosController.edsmResultados}" stickyHeader="true" stickyTopAt=".layout-topbar">
+
+			<p:column headerText="Pregunta">
+				<h:outputText value="#{car.pregunta}" />
+			</p:column>
+
+			<p:column headerText="Obs" style="width:40px;">
+				<h:outputText value="#{car.observador}" />
+			</p:column>
+
+			<p:column headerText="Padre" style="width:40px;">
+				<h:outputText value="#{car.padre}" />
+			</p:column>
+
+			<p:column headerText="Codigo" style="width:40px;">
+				<h:outputText value="#{car.valor}" />
+			</p:column>
+		</p:dataTable>
+
+
+		<p:separator />
+
+		<center>
+			<p:chart type="pie" model="#{edsmResultadosController.model }"
+				style="width:400px;height:300px" />
+			<br />
+			<p:outputLabel for="msg1" value="Agregar descripcin a este resultado" />
+			<br />
+			<p:inputTextarea id="msg1"  value="#{edsmResultadosController.observacion}" required="true"
+				rows="6" cols="40" />
+			<br />
+			<br />
+			<p:commandButton value="Guardar Respuesta"
+				action="#{edsmResultadosController.guardarResultado()}" update="@form"
+				style="margin-right:20px;" styleClass="ui-priority-primary" />
+		</center>
+
+
+		<p:separator />
+
+
+	</h:form>
+
+
+</body>
+</html>
