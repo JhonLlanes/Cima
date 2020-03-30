@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "tbl_preguntas")
@@ -15,6 +16,7 @@ public class Preguntas {
 	@Id
 	private int pre_id;
 	
+	@Size(min = 0, max = 50, message = "Numero de caracteres muy grande")
 	private String pre_nombre;
 	private String pre_descripcion;
 	

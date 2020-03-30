@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "tbl_login")
@@ -14,7 +16,10 @@ public class Login {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int log_id;
 	
+	@Size(min = 0, max = 50, message = "Numero de caracteres muy grande")
 	private String log_usuario;
+	
+	@Size(min = 0, max = 50, message = "Numero de caracteres muy grande")
 	private String log_contrasena;
 	
 	public int getLog_id() {

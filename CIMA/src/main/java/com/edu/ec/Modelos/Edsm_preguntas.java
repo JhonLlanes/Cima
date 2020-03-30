@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "tbl_edsmpreguntas")
@@ -16,7 +18,9 @@ public class Edsm_preguntas {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int eds_pre_id;
 	
+	@Size(min = 0, max = 5, message = "Numero de caracteres muy grande")
 	private String eds_pre_observador;
+	@Size(min = 0, max = 5, message = "Numero de caracteres muy grande")
 	private String eds_pre_informador;
 		
 	

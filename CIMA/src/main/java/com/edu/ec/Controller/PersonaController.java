@@ -42,8 +42,6 @@ public class PersonaController {
 			
 			if (usauriofav.getPersona().getRol().getRol_numero() == 1 || (usauriofav.getPersona().getRol().getRol_numero() == 2) ){
 				
-			
-			
 			int idLogin= logBus.guardarLogin(login);
 			Login log = new Login();
 			log.setLog_id(idLogin);

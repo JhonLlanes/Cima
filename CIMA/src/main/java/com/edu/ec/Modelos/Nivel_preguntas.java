@@ -3,6 +3,7 @@ package com.edu.ec.Modelos;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "tbl_nivel_preguntas")
@@ -11,6 +12,7 @@ public class Nivel_preguntas {
 	@Id
 	private int niv_id;
 	
+	@Size(min = 0, max = 20, message = "Numero de caracteres muy grande")
 	private String niv_nombre;
 	private int niv_numero;
 	public int getNiv_id() {

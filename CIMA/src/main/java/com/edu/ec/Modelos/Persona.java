@@ -11,6 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Size;
 
 
 @Entity
@@ -21,7 +22,10 @@ public class Persona {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int per_id;
 	
+	@Size(min = 0, max = 50, message = "Numero de caracteres muy grande")
 	private String per_nombre;
+	
+	@Size(min = 0, max = 50, message = "Numero de caracteres muy grande")
 	private String per_apellido;
 	
 	@Temporal(TemporalType.DATE)
