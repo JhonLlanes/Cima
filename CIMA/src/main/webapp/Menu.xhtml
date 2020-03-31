@@ -16,12 +16,7 @@
 		<div align="right">
 
 			Sesión:
-			<p:outputLabel value="#{menuController.per.per_apellido}" />
-
-			<p:outputLabel value=" " />
-
-			<p:outputLabel value="#{menuController.per.per_nombre}" />
-
+			<p:outputLabel value="#{sesionesController.sesion}" />
 
 		</div>
 		<br />
@@ -42,8 +37,7 @@
 							action="#{menuController.ingresarPersona()}" icon="pi pi-save" />
 						<p:menuitem value="Crear Edsm" action="#{menuController.crearEdsm()}"
 							ajax="false" icon="pi pi-times" />
-						<p:menuitem value="Listar Edsm" action="#{menuView.delete}"
-							ajax="false" icon="pi pi-times" />
+						
 					</p:submenu>
 					
 					<p:submenu label="Usuario">

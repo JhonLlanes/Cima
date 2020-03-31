@@ -13,7 +13,6 @@
 <body>
 
 	<h:form>
-
 		<p:dataTable var="resultado"
 			value="#{resultadoController.listaRespuestas}">
 			<p:column headerText="Nivel">
@@ -41,7 +40,10 @@
 
 		</p:dataTable>
 
-
+		<p:stack icon="/resources/stack.png" expanded="true">
+			<p:menuitem value="Menú" icon="/resources/home.png"
+				action="#{sesionesController.IRmenu()}" />
+		</p:stack>
 
 	</h:form>
 

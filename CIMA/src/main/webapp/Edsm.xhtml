@@ -8,16 +8,27 @@
 <h:head>
 
 </h:head>
+
+
 <body>
 
 	<h:form>
 		<p:growl id="growl" life="2000" />
 
+		<div align="right">
+
+			Sesión:
+			<p:outputLabel value="#{sesionesController.sesion}" />
+
+		</div>
+		<br />
+
 		<p:panel id="basic" header="Crear EDSM" style="margin-bottom:20px">
 			<h:panelGrid columns="2" cellpadding="5">
 
-				<h:outputText value="Edsm Detalle" />
-				<p:inputText value="#{edsmController.edsmIngreso.eds_detalle}" />
+				<h:outputText for="pwd1" value="Edsm Detalle: *" />
+				<p:inputText id="pwd1" value="#{edsmController.edsmIngreso.eds_detalle}"
+					 />
 			</h:panelGrid>
 			<p:carousel value="#{edsmController.personaEstudiante}"
 				headerText="Seleccionar Estudiante" var="persona"
@@ -71,20 +82,25 @@
 					</p:column>
 
 					<p:column headerText="Acción">
-						<p:commandButton value="Resolver Edsm" 
-							action="#{edsmController.desarrollaredsm(car)}" style="margin-right:20px;"
-							ajax="false" />
+						<p:commandButton value="Resolver Edsm"
+							action="#{edsmController.desarrollaredsm(car)}"
+							style="margin-right:20px;" ajax="false" />
 					</p:column>
-					
+
 					<p:column headerText="Resultados">
-						<p:commandButton value="Resultado" 
-							action="#{edsmController.resultadoEdsm(car)}" style="margin-right:20px;"
-							ajax="false" />
+						<p:commandButton value="Resultado"
+							action="#{edsmController.resultadoEdsm(car)}"
+							style="margin-right:20px;" ajax="false" />
 					</p:column>
 
 				</p:dataTable>
 			</h:panelGrid>
 		</p:panel>
+
+		<p:stack icon="/resources/stack.png" expanded="true">
+			<p:menuitem value="Menú" icon="/resources/home.png"
+				action="#{sesionesController.IRmenu()}" />
+		</p:stack>
 
 	</h:form>
 

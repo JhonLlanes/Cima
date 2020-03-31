@@ -8,34 +8,59 @@
 <h:head>
 	<title>Ingresar Persona</title>
 </h:head>
+
 <body>
 
 	<h:form>
-	<p:growl id="growl" life="2000" />
-		<h:panelGrid columns="2" cellpadding="5">
 
-			<h:outputText value="Usuario:" />
-			<p:inputText value="#{personaController.login.log_usuario}" />
-			<h:outputText value="Contraseña:" />
-			<p:password id="feedback"
-				value="#{personaController.login.log_contrasena}" feedback="true" />
-			<h:outputText value="Nombre: " />
-			<p:inputText value="#{personaController.persona.per_nombre}" />
-			<h:outputText value="Apellido:" />
-			<p:inputText value="#{personaController.persona.per_apellido}" />
-			<h:outputText value="Fecha Nacimiento:" />
-			<p:calendar id="button" value="#{personaController.persona.per_fecha_nacimiento}" showOn="button" />
-			
-			<p:outputLabel for="basic" value="Rol" />
-       		<p:selectOneListbox id="basic" value="#{personaController.rol.rol_id}">
-            <f:selectItem itemLabel="Administrador" itemValue="1" />
-            <f:selectItem itemLabel="Terapista" itemValue="2" />
-            <f:selectItem itemLabel="Estudiante" itemValue="3" />
-        </p:selectOneListbox>
-        
-		</h:panelGrid>
+
+		<p:growl id="growl" life="2000" />
+		<div align="right">
+			Sesión:
+			<p:outputLabel value="#{sesionesController.sesion}" />	
+		</div>
+		<br />
+
 		<center>
-		<p:commandButton value="Guardar" action="#{personaController.guardar()}" style="margin-right:20px;" ajax="false" />
+			<h:panelGrid id="grid" columns="4" cellpadding="5">
+
+				<p:outputLabel value="Usuario: " />
+				<p:inputText value="#{personaController.login.log_usuario}"
+					required="true" />
+
+				<p:outputLabel value="Contraseña: " />
+				<p:password id="contra"
+					value="#{personaController.login.log_contrasena}" feedback="true"
+					required="true" />
+
+				<p:outputLabel value="Nombre: " />
+				<p:inputText value="#{personaController.persona.per_nombre}"
+					required="true" />
+
+				<p:outputLabel value="Apellido: " />
+				<p:inputText value="#{personaController.persona.per_apellido}"
+					required="true" />
+
+				<p:outputLabel value="Fecha Nacimiento: " />
+				<p:calendar id="button"
+					value="#{personaController.persona.per_fecha_nacimiento}"
+					showOn="button" required="true" />
+
+				<p:outputLabel for="basic" value="Rol" />
+				<p:selectOneListbox id="basic"
+					value="#{personaController.rol.rol_id}" required="true">
+					<f:selectItem itemLabel="Administrador" itemValue="1" />
+					<f:selectItem itemLabel="Terapista" itemValue="2" />
+					<f:selectItem itemLabel="Estudiante" itemValue="3" />
+				</p:selectOneListbox>
+
+			</h:panelGrid>
+
+
+			<p:commandButton value="Guardar"
+				action="#{personaController.guardar()}" style="margin-right:20px;"
+				ajax="false" />
+
 		</center>
 	</h:form>
 
