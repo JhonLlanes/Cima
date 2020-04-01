@@ -26,4 +26,8 @@ public class EdsmBussines {
 	public List<Edsm> BuscarEdsm(String busapellido, Persona personaEncargada) {
 		return edsmDao.BuscarEdsm(busapellido, personaEncargada);
 	}
+	
+	public List<Edsm> listarEdsmEst(Persona personaestu) {
+		return edsmDao.listarEdsmEst(personaestu);
+	}
 }

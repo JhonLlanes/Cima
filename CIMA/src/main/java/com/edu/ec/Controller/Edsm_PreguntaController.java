@@ -70,6 +70,13 @@ public class Edsm_PreguntaController {
 		addMessage("Infromador" + edsmPregunta.getEds_pre_informador() + " Observador "
 				+ edsmPregunta.getEds_pre_observador());
 	}
+	
+	public void actualizarTodolosdatos() {
+		for (int i = 0; i < edsmTemp.size(); i++) {			
+			edsmpregBus.actualizarEdsmPreguntas(edsmTemp.get(i));
+		}	
+	}
+	
 
 	public List<Edsm_preguntas> getEdsmTemp() {
 		return edsmTemp;

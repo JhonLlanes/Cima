@@ -41,4 +41,12 @@ public class EdsmDao {
 		return listadoEdsmEncargado;
 
 	}
+	
+	public List<Edsm> listarEdsmEst(Persona personaestu) {
+		String jpql = "SELECT n FROM Edsm n WHERE n.Persona=:perEn ORDER BY n.eds_id DESC ";
+		Query query = em.createQuery(jpql, Edsm.class);
+		query.setParameter("perEn", personaestu);
+		List<Edsm> listadoEdsmEncargado = query.getResultList();
+		return listadoEdsmEncargado;
+	}
 }

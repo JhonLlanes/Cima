@@ -32,7 +32,7 @@ public class SesionesController {
 				
 			}else {
 				
-				sesion =  usuraiofav.getPersona().getPer_nombre()+" "+usuraiofav.getPersona().getPer_apellido();
+				sesion =  usuraiofav.getPersona().getPer_nombre()+" "+usuraiofav.getPersona().getPer_apellido()+ " Rol:  " + usuraiofav.getPersona().getRol().getRol_nombre() ;
 				
 			}
 			
