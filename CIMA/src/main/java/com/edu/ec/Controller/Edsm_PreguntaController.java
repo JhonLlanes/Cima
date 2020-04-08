@@ -72,9 +72,19 @@ public class Edsm_PreguntaController {
 	}
 	
 	public void actualizarTodolosdatos() {
-		for (int i = 0; i < edsmTemp.size(); i++) {			
-			edsmpregBus.actualizarEdsmPreguntas(edsmTemp.get(i));
-		}	
+		
+		try {
+			
+			for (int i = 0; i < edsmTemp.size(); i++) {			
+				edsmpregBus.actualizarEdsmPreguntas(edsmTemp.get(i));
+			}	
+			
+			addMessage("SE GUARDARON LAS PREGUNTAS");
+			
+		} catch (Exception e) {
+			// TODO: handle exception	
+			addMessage("ERRO AL GUARDAR");
+		}
 	}
 	
 
