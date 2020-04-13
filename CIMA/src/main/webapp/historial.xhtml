@@ -13,7 +13,7 @@
 <body>
 
 	<h:form>
-		<p:dataTable var="resultado"
+		<p:dataTable id="tbl" var="resultado"
 			value="#{resultadoController.listaRespuestas}">
 			<p:column headerText="Nivel">
 				<h:outputText value="#{resultado.nivel.niv_nombre}" />
@@ -40,10 +40,44 @@
 
 		</p:dataTable>
 
-		<p:stack icon="/resources/stack.png" expanded="true">
+
+
+		<p:dataTable id="tbl1" var="car" value="#{resultadoController.listaNo}">
+			<p:column headerText="Nivel" groupRow="true">
+				<h:outputText value="#{car.nivel}" />
+			</p:column>
+
+			<p:column headerText="Categoria pregunta" groupRow="true">
+				<h:outputText value="#{car.categoria_pregunta}" />
+			</p:column>
+
+			<p:column headerText="Pregunta">
+				<h:outputText value="#{car.pregunta}" />
+			</p:column>
+
+			<p:column headerText="Observador">
+				<h:outputText value="#{car.observador}" />
+			</p:column>
+
+			<p:column headerText="Padre">
+				<h:outputText value="#{car.padre}" />
+			</p:column>
+
+			<p:column headerText="Valor">
+				<h:outputText value="#{car.valor}" />
+			</p:column>
+		</p:dataTable>
+
+		<p:stack icon="resources/stack.png" expanded="true">
 			<p:menuitem value="Menú" icon="/resources/home.png"
 				action="#{sesionesController.IRmenu()}" />
 		</p:stack>
+
+
+		<p:commandButton value="Export as PDF" ajax="false">
+			<p:dataExporter type="pdf" target="tbl1" fileName="Llanes" />
+		</p:commandButton>
+
 
 	</h:form>
 

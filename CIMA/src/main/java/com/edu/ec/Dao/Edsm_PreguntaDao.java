@@ -34,6 +34,15 @@ public class Edsm_PreguntaDao {
 		return edsmPreguntasLista;
 	}
 	
+	public List<Edsm_preguntas> ListarNegativos(Edsm edsm) {
+		String jpql = "SELECT n FROM Edsm_preguntas n WHERE n.edsm=:edsmP ORDER BY n.preguntas.pre_id ASC ";
+		Query query = em.createQuery(jpql, Edsm_preguntas.class);
+		query.setParameter("edsmP", edsm);
+		List<Edsm_preguntas> edsmPreguntasLista = query.getResultList();
+		return edsmPreguntasLista;
+	}
+	
+	
 	public void actualizarEdsmPreguntas (Edsm_preguntas esdmpre) {
 		em.merge(esdmpre);
 	}

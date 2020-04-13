@@ -2,6 +2,8 @@ package com.edu.ec.Favorito;
 
 public class EdsmPreguntasResultados {
 
+	private String nivel;
+	private String categoria_pregunta;
 	private String pregunta;
 	private String observador;
 	private String padre;
@@ -30,4 +32,16 @@ public class EdsmPreguntasResultados {
 	public void setValor(String valor) {
 		this.valor = valor;
 	}
+	public String getNivel() {
+		return nivel;
+	}
+	public void setNivel(String nivel) {
+		this.nivel = nivel;
+	}
+	public String getCategoria_pregunta() {
+		return categoria_pregunta;
+	}
+	public void setCategoria_pregunta(String categoria_pregunta) {
+		this.categoria_pregunta = categoria_pregunta;
+	}	
 }
