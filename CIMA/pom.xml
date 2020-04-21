@@ -200,6 +200,21 @@
         	<artifactId>primefaces</artifactId>
         	<version>7.0</version>
         </dependency>
+        <dependency>
+        	<groupId>com.lowagie</groupId>
+        	<artifactId>itext</artifactId>
+        	<version>2.1.7</version>
+        </dependency>
+        <dependency>
+        	<groupId>org.apache.poi</groupId>
+        	<artifactId>poi</artifactId>
+        	<version>4.1.2</version>
+        </dependency>
+        <dependency>
+        	<groupId>com.google.guava</groupId>
+        	<artifactId>guava</artifactId>
+        	<version>r05</version>
+        </dependency>
     </dependencies>
 
     <build>

@@ -44,7 +44,9 @@ public class Edsm_PreguntaDao {
 	
 	
 	public void actualizarEdsmPreguntas (Edsm_preguntas esdmpre) {
+		
 		em.merge(esdmpre);
+		
 	}
 
 	public void Contar(Edsm edsm, Nivel_preguntas nivel) {

@@ -26,4 +26,12 @@ public class PersonaBussines {
 	public Persona listarLogin(Login lg){
 		return perDao.listarLogin(lg);
 	}
+	
+	public List<Persona> listarEstudianteHistorial(Persona perencar){
+		return perDao.listarEstudianteHistorial(perencar);
+	}
+	
+	public List<Persona> BuscarlistarEstudianteHistorial( String apellido ,Persona perencar){
+		return perDao.BuscarlistarEstudianteHistorial(apellido, perencar);
+	}
 }

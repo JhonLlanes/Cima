@@ -38,6 +38,10 @@ public class Persona {
 	@ManyToOne
 	@JoinColumn(name = "login_persona_fk", referencedColumnName = "log_id")
 	private Login login;
+	
+	@ManyToOne
+	@JoinColumn(name = "persona_persona_fk", referencedColumnName = "per_id")
+	private Persona personaencargada;
 
 	public int getPer_id() {
 		return per_id;
@@ -86,6 +90,16 @@ public class Persona {
 	public void setLogin(Login login) {
 		this.login = login;
 	}
+
+	public Persona getPersonaencargada() {
+		return personaencargada;
+	}
+
+	public void setPersonaencargada(Persona personaencargada) {
+		this.personaencargada = personaencargada;
+	}
+	
+	
 	
 
 }

@@ -50,4 +50,25 @@ public class PersonaDao {
 	}
 	
 	
+	public List<Persona> listarEstudianteHistorial(Persona perencar){
+		
+		String jpql = "SELECT n FROM Persona n WHERE n.personaencargada=:perP ORDER BY n.per_id DESC";
+		Query query = em.createQuery(jpql, Persona.class);
+		query.setParameter("perP", perencar);
+		List<Persona> listadoEstudiantes = query.getResultList();
+		return listadoEstudiantes;
+	}
+	
+public List<Persona> BuscarlistarEstudianteHistorial( String apellido ,Persona perencar){
+		
+		String jpql = "SELECT n FROM Persona n WHERE n.per_apellido LIKE :busAp AND n.personaencargada=:perP ORDER BY n.per_id DESC";
+		Query query = em.createQuery(jpql, Persona.class);
+		query.setParameter("perP", perencar);
+		query.setParameter("busAp", "%" +apellido +"%");
+		List<Persona> listadoEstudiantes = query.getResultList();
+		return listadoEstudiantes;
+	}
+	
+	
+	
 }

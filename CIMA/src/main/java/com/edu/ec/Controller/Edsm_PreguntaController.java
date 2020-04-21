@@ -8,11 +8,16 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+
+import org.apache.poi.util.StringUtil;
+
 import com.edu.ec.Bussines.Edsm_preguntasBussines;
 import com.edu.ec.Favorito.EdsmFavorito;
 import com.edu.ec.Modelos.Edsm;
 import com.edu.ec.Modelos.Edsm_preguntas;
 import com.edu.ec.Modelos.Nivel_preguntas;
+
+import com.google.common.base.*;
 
 @ManagedBean
 @ViewScoped
@@ -31,8 +36,8 @@ public class Edsm_PreguntaController {
 	@PostConstruct
 	public void init() {
 		Nombre = edsmFav.getEdsm().getPersona().getPer_nombre() + " "
-				+ edsmFav.getEdsm().getPersona().getPer_apellido();	
-		
+				+ edsmFav.getEdsm().getPersona().getPer_apellido();
+
 		respuestaNivel1();
 
 	}
@@ -70,23 +75,85 @@ public class Edsm_PreguntaController {
 		addMessage("Infromador" + edsmPregunta.getEds_pre_informador() + " Observador "
 				+ edsmPregunta.getEds_pre_observador());
 	}
-	
+
+	/**
+	 * 
+	 */
 	public void actualizarTodolosdatos() {
-		
+
 		try {
+
+			for (Edsm_preguntas ingresar : edsmTemp) {
+				if (ingresar.getEds_pre_informador() == null) {
+
+					System.out.println("si");
+					ingresar.setEds_pre_informador("");
+
+				} else {
+				}
+				if (ingresar.getEds_pre_observador() == null) {
+
+					System.out.println("si");
+					ingresar.setEds_pre_observador("");
+
+				} else {
+				}
+
+				edsmpregBus.actualizarEdsmPreguntas(ingresar);
 			
-			for (int i = 0; i < edsmTemp.size(); i++) {			
-				edsmpregBus.actualizarEdsmPreguntas(edsmTemp.get(i));
-			}	
+
+			}
 			
 			addMessage("SE GUARDARON LAS PREGUNTAS");
-			
+
 		} catch (Exception e) {
-			// TODO: handle exception	
-			addMessage("ERRO AL GUARDAR");
+			// TODO: handle exception
+			e.printStackTrace();
 		}
+
 	}
-	
+
+	/*
+	 * try {
+	 * 
+	 * for (int i = 0; i < edsmTemp.size(); i++) {
+	 * 
+	 * System.out.println("Upadate...." + edsmTemp.get(i).getEds_pre_id());
+	 * 
+	 * System.out.println(edsmTemp.get(i).getEds_pre_informador() + "observador " +
+	 * edsmTemp.get(i).getEds_pre_observador().);
+	 * 
+	 * 
+	 * if (edsmTemp.get(i).getEds_pre_observador().toString().equals(null)
+	 * ||edsmTemp.get(i).getEds_pre_observador().toString().equals("+")
+	 * 
+	 * || edsmTemp.get(i).getEds_pre_observador().equals("-") ||
+	 * edsmTemp.get(i).getEds_pre_observador().equals("NA") ||
+	 * edsmTemp.get(i).getEds_pre_observador().equals("+/-")) {
+	 * 
+	 * }else { edsmTemp.get(i).setEds_pre_observador("");
+	 * 
+	 * }
+	 * 
+	 * if (edsmTemp.get(i).getEds_pre_informador().toString().equals(null)
+	 * ||edsmTemp.get(i).getEds_pre_informador().equals("+") ||
+	 * edsmTemp.get(i).getEds_pre_informador().equals("-")
+	 * ||edsmTemp.get(i).getEds_pre_informador().toString().equals(null) ||
+	 * edsmTemp.get(i).getEds_pre_informador().equals("NA") ||
+	 * edsmTemp.get(i).getEds_pre_informador().equals("+/-")
+	 * 
+	 * ) { }else { edsmTemp.get(i).setEds_pre_informador("");
+	 * 
+	 * } System.out.println(edsmTemp.get(i).getEds_pre_informador() +
+	 * " +   observador +  " + edsmTemp.get(i).getEds_pre_observador());
+	 * 
+	 * edsmpregBus.actualizarEdsmPreguntas(edsmTemp.get(i)); }
+	 * 
+	 * addMessage("SE GUARDARON LAS PREGUNTAS");
+	 * 
+	 * } catch (Exception e) { // TODO: handle exception e.printStackTrace();
+	 * addMessage("ERRO AL GUARDAR"); }
+	 */
 
 	public List<Edsm_preguntas> getEdsmTemp() {
 		return edsmTemp;
@@ -116,7 +183,5 @@ public class Edsm_PreguntaController {
 	public void setNombre(String nombre) {
 		Nombre = nombre;
 	}
-	
-	
 
 }

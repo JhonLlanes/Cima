@@ -47,6 +47,7 @@ public class PersonaController {
 			log.setLog_id(idLogin);
 			persona.setLogin(log);
 			persona.setRol(rol);
+			persona.setPersonaencargada(usauriofav.getPersona());
 			perBus.guardarPersona(persona);
 			addMessage("Guardado");
 			return "Edsm?faces-redirect=true";

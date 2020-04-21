@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
@@ -13,8 +14,18 @@
 <body>
 
 	<h:form>
+
+		<div align="right">
+
+			Sesión:
+			<p:outputLabel value="#{sesionesController.sesion}" />
+
+		</div>
+		<br />
 		<p:dataTable id="tbl" var="resultado"
 			value="#{resultadoController.listaRespuestas}">
+
+
 			<p:column headerText="Nivel">
 				<h:outputText value="#{resultado.nivel.niv_nombre}" />
 			</p:column>
@@ -42,7 +53,8 @@
 
 
 
-		<p:dataTable id="tbl1" var="car" value="#{resultadoController.listaNo}">
+		<p:dataTable id="tbl1" var="car"
+			value="#{resultadoController.listaNo}">
 			<p:column headerText="Nivel" groupRow="true">
 				<h:outputText value="#{car.nivel}" />
 			</p:column>
@@ -74,8 +86,13 @@
 		</p:stack>
 
 
-		<p:commandButton value="Export as PDF" ajax="false">
-			<p:dataExporter type="pdf" target="tbl1" fileName="Llanes" />
+		<h:commandLink>
+			<p:graphicImage value="/resources/pdf.png" />
+			<p:dataExporter type="pdf" target="tbl" fileName="Reporte" encoding="utf8" />
+		</h:commandLink>
+
+		<p:commandButton value="Export as xls" ajax="false">
+			<p:dataExporter type="xls" target="tbl1" fileName="ReporteXls" postProcessor="#{resultadoController.postProcessXLS}"/>
 		</p:commandButton>
 
 

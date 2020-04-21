@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+
+	<h:form>
+
+		<p:layoutUnit position="center">
+
+			<h:outputLabel value="Apellido: " />
+			<p:inputText value="#{hController.buscarApellido}" />
+			<p:commandButton value="Buscar" id="ajax"
+				action="#{hController.Buscar()}" update="@form"
+				style="margin-right:20px;" styleClass="ui-priority-primary" />
+			<br />
+			<p:separator />
+
+			<p:panel id="PanelEdsm" header="Esdm Creados"
+				style="margin-bottom:20px">
+				<h:panelGrid columns="2" cellpadding="10">
+
+					<p:dataTable id="tablacreados" var="car"
+						value="#{hController.listaEdsmEncargado}">
+						<p:column headerText="Detalle">
+							<h:outputText value="#{car.eds_detalle}" />
+						</p:column>
+
+						<p:column headerText="Nombre">
+							<h:outputText value="#{car.persona.per_nombre}" />
+						</p:column>
+
+						<p:column headerText="Apellido">
+							<h:outputText value="#{car.persona.per_apellido}" />
+						</p:column>
+
+						<p:column headerText="Fecha ">
+							<h:outputText value="#{car.eds_fecha}" />
+						</p:column>
+
+						<p:column headerText="Acción">
+						
+						</p:column>
+						
+					</p:dataTable>
+				</h:panelGrid>
+
+
+
+			</p:panel>
+
+		</p:layoutUnit>
+
+
+
+	</h:form>
+
+
+</body>
+</html>

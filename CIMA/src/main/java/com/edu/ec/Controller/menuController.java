@@ -105,6 +105,20 @@ public class menuController {
 
 		return null;
 	}
+	
+	
+	public String h1() {
+
+		if (usauriofav.getPersona().getRol().getRol_numero() == 1
+				|| (usauriofav.getPersona().getRol().getRol_numero() == 2)) {
+			return "h1?faces-redirect=true";
+		} else {
+
+			info("N0 PUEDE INGRESAR");
+		}
+
+		return null;
+	}
 
 	public void Buscar() {
 		listaEdsmEncargado = edsmBus.BuscarEdsm(BuscarApellido, usauriofav.getPersona());

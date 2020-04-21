@@ -23,10 +23,10 @@
 		</div>
 		<br />
 
-		<p:panel id="basic" header="Crear EDSM" style="margin-bottom:20px">
+		<p:panel id="basic" header="Crear ESDM" style="margin-bottom:20px">
 			<h:panelGrid columns="2" cellpadding="5">
 
-				<h:outputText for="pwd1" value="Edsm Detalle: *" />
+				<h:outputText for="pwd1" value="Esdm Detalle: *" />
 				<p:inputText id="pwd1" value="#{edsmController.edsmIngreso.eds_detalle}"
 					 />
 			</h:panelGrid>
@@ -45,6 +45,12 @@
 					<h:outputText value="Fecha Nacimiento" />
 					<h:outputText value="#{persona.per_fecha_nacimiento}"
 						style="color:#{car.color}" />
+						
+					<h:outputText value="Terapista" />
+					<h:outputText value="#{persona.personaencargada.per_nombre}"
+						style="color:#{car.color}" />
+						
+						
 				</p:panelGrid>
 				<p:growl id="growl" life="2000" />
 				<p:commandButton value="Seleccionar" update="growl"
@@ -59,7 +65,7 @@
 
 		</p:panel>
 
-		<p:panel id="PanelEdsm" header="Edsm Creados"
+		<p:panel id="PanelEdsm" header="Esdm Creados"
 			style="margin-bottom:20px">
 			<h:panelGrid columns="2" cellpadding="10">
 
@@ -82,7 +88,7 @@
 					</p:column>
 
 					<p:column headerText="Acción">
-						<p:commandButton value="Resolver Edsm"
+						<p:commandButton value="Resolver Esdm"
 							action="#{edsmController.desarrollaredsm(car)}"
 							style="margin-right:20px;" ajax="false" />
 					</p:column>

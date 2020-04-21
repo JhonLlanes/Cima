@@ -35,7 +35,9 @@
 					<p:submenu label="Terapista">
 						<p:menuitem value="Crear Estudiante"
 							action="#{menuController.ingresarPersona()}" icon="pi pi-save" />
-						<p:menuitem value="Crear Edsm" action="#{menuController.crearEdsm()}"
+						<p:menuitem value="Crear Esdm" action="#{menuController.crearEdsm()}"
+							ajax="false" icon="pi pi-times" />
+						<p:menuitem value="Historial" action="#{menuController.h1()}"
 							ajax="false" icon="pi pi-times" />
 						
 					</p:submenu>
@@ -51,7 +53,7 @@
 				<br/>
 				<p:separator />
 				
-				<p:panel id="PanelEdsm" header="Edsm Creados"
+				<p:panel id="PanelEdsm" header="Esdm Creados"
 			style="margin-bottom:20px">
 			<h:panelGrid columns="2" cellpadding="10">
 
@@ -74,19 +76,19 @@
 					</p:column>
 
 					<p:column headerText="Acción">
-						<p:commandButton value="Resolver Edsm" 
+						<p:commandButton value="Resolver Esdm" 
 							action="#{menuController.desarrollaredsm(car)}" style="margin-right:20px;"
 							ajax="false" />
 					</p:column>
 					
-					<p:column headerText="Resultados">
-						<p:commandButton value="Resultado" 
+					<p:column headerText="Evaluar">
+						<p:commandButton value="Evaluar" 
 							action="#{menuController.resultadoEdsm(car)}" style="margin-right:20px;"
 							ajax="false" />
 					</p:column>
 					
-					<p:column headerText="Historial">
-						<p:commandButton value="Historial" 
+					<p:column headerText="Resultado">
+						<p:commandButton value="Resultado" 
 							action="#{menuController.resultadoHistorial(car)}" style="margin-right:20px;"
 							ajax="false" />
 					</p:column>

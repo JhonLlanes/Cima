@@ -125,10 +125,6 @@ public class Edsm_preguntasBussines {
 	}
 
 	public List<EdsmPreguntasResultados> Listarnegativos(Edsm edsm) {
-		int A = 0;
-		int N = 0;
-		int P = 0;
-
 		List<EdsmPreguntasResultados> resultados = new ArrayList<>();
 		try {
 
@@ -137,9 +133,8 @@ public class Edsm_preguntasBussines {
 			for (Edsm_preguntas edsm_preguntas2 : edsm_preguntas) {
 
 				EdsmPreguntasResultados er = new EdsmPreguntasResultados();
-
-				if (edsm_preguntas2.getEds_pre_observador().equals("-")
-						&& edsm_preguntas2.getEds_pre_informador().equals("-")) {
+				
+				if (edsm_preguntas2.getEds_pre_observador().equals("-")	&& edsm_preguntas2.getEds_pre_informador().equals("-")) {
 					er.setNivel(edsm_preguntas2.getPreguntas().getNivel().getNiv_nombre());
 					er.setCategoria_pregunta(edsm_preguntas2.getPreguntas().getPre_nombre());
 					er.setPregunta(edsm_preguntas2.getPreguntas().getPre_descripcion());
