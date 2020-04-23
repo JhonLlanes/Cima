@@ -27,12 +27,30 @@
 				<p:outputLabel value="Usuario: " />
 				<p:inputText value="#{personaController.login.log_usuario}"
 					required="true" />
-
-				<p:outputLabel value="Contraseña: " />
+					
+				<p:outputLabel value="Contraseña *" />
+				
+				<h:panelGrid id="contra_id" columns="1" cellpadding="5">
+				
+				<p:password id="contra_res"
+					value="#{personaController.verficar_contra_1}" feedback="true"
+					required="true" >
+					<p:ajax event="keyup" update="out" listener="#{personaController.handleKeyEvent()}" />
+					</p:password>
+				
 				<p:password id="contra"
-					value="#{personaController.login.log_contrasena}" feedback="true"
-					required="true" />
+					value="#{personaController.verficar_contra}" feedback="true"
+					required="true">
+					
+					<p:ajax event="keyup" update="out" listener="#{personaController.handleKeyEvent()}" />
+					
+				</p:password>
+				
+				<h:outputText id="out" value="#{personaController.res_contra}" />
+				
+				</h:panelGrid>
 
+				
 				<p:outputLabel value="Nombre: " />
 				<p:inputText value="#{personaController.persona.per_nombre}"
 					required="true" />

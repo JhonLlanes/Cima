@@ -10,6 +10,12 @@
 
 	<h:form>
 
+		<div align="right">
+			Sesión:
+			<p:outputLabel value="#{sesionesController.sesion}" />
+		</div>
+		<br />
+
 		<p:layoutUnit position="center">
 
 			<h:outputLabel value="Apellido: " />
@@ -27,25 +33,25 @@
 					<p:dataTable id="tablacreados" var="car"
 						value="#{hController.listaEdsmEncargado}">
 						<p:column headerText="Detalle">
-							<h:outputText value="#{car.eds_detalle}" />
+							<h:outputText value="#{car.per_nombre}" />
 						</p:column>
 
 						<p:column headerText="Nombre">
-							<h:outputText value="#{car.persona.per_nombre}" />
+							<h:outputText value="#{car.per_apellido}" />
 						</p:column>
 
 						<p:column headerText="Apellido">
-							<h:outputText value="#{car.persona.per_apellido}" />
+							<h:outputText value="#{car.per_fecha_nacimiento}" />
 						</p:column>
 
 						<p:column headerText="Fecha ">
-							<h:outputText value="#{car.eds_fecha}" />
+							<h:outputText value="#{car.rol.rol_nombre}" />
 						</p:column>
 
 						<p:column headerText="Acción">
-						
+
 						</p:column>
-						
+
 					</p:dataTable>
 				</h:panelGrid>
 

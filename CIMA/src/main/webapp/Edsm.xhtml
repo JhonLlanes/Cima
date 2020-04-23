@@ -39,15 +39,15 @@
 					<h:outputText value="Nombre:" />
 					<h:outputText value="#{persona.per_nombre}" />
 
-					<h:outputText value="Apellido" />
+					<h:outputText value="Apellido: " />
 					<h:outputText value="#{persona.per_apellido}" />
 
-					<h:outputText value="Fecha Nacimiento" />
+					<h:outputText value="Fecha Nacimiento:" />
 					<h:outputText value="#{persona.per_fecha_nacimiento}"
 						style="color:#{car.color}" />
 						
-					<h:outputText value="Terapista" />
-					<h:outputText value="#{persona.personaencargada.per_nombre}"
+					<h:outputText value="Terapista:" />
+					<h:outputText value="#{persona.personaencargada.per_nombre} #{persona.personaencargada.per_apellido}"
 						style="color:#{car.color}" />
 						
 						
@@ -93,8 +93,8 @@
 							style="margin-right:20px;" ajax="false" />
 					</p:column>
 
-					<p:column headerText="Resultados">
-						<p:commandButton value="Resultado"
+					<p:column headerText="Evaluar">
+						<p:commandButton value="Evaluar"
 							action="#{edsmController.resultadoEdsm(car)}"
 							style="margin-right:20px;" ajax="false" />
 					</p:column>
