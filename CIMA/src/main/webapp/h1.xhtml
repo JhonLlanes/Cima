@@ -5,7 +5,16 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 
-<h:head></h:head>
+<h:head>
+
+</h:head>
+
+<style type="text/css">
+    .value {
+        font-weight: bold;
+    }
+</style>
+
 <body>
 
 	<h:form>
@@ -49,17 +58,46 @@
 						</p:column>
 
 						<p:column headerText="Acción">
+						
+						<p:commandButton value="Historial" update="@form"
+							action="#{hController.buscarpersonas(car)}"
+							style="margin-right:20px;" ajax="false" />
 
 						</p:column>
-
 					</p:dataTable>
 				</h:panelGrid>
 
+
+			
 
 
 			</p:panel>
 
 		</p:layoutUnit>
+		
+		
+		<p:dataGrid var="car" value="#{hController.modelohistorialfinal}" columns="3" layout="grid"
+        rows="12" paginator="true" id="cars"
+        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="6,12,16">
+         
+        <f:facet name="header">
+            Historial
+        </f:facet>
+ 
+        <p:panel header="#{car.nivel.niv_nombre}" style="text-align:center">
+            <h:panelGrid columns="1" style="width:100%">
+ 
+                <h:outputText value="#{car.mod_descripcion}" />
+                <h:outputText value="#{car.mod_fecha}" />
+                <h:outputText value="#{car.mod_edad}" />
+               
+               <p:chart type="pie" model="#{car.model}"
+				style="width:400px;height:300px" />
+            </h:panelGrid>
+        </p:panel>
+ 
+    </p:dataGrid>
 
 
 

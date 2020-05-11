@@ -23,14 +23,20 @@
 		</div>
 		<br />
 
+
+
 		<p:panel id="basic" header="Crear ESDM" style="margin-bottom:20px">
 			<h:panelGrid columns="2" cellpadding="5">
 
 				<h:outputText for="pwd1" value="Esdm Detalle: *" />
-				<p:inputText id="pwd1" value="#{edsmController.edsmIngreso.eds_detalle}"
-					 />
+				<p:inputText id="pwd1"
+					value="#{edsmController.edsmIngreso.eds_detalle}" />
+
+
+		
+
 			</h:panelGrid>
-			<p:carousel value="#{edsmController.personaEstudiante}"
+			<p:carousel id="ListaCarru" value="#{edsmController.personaEstudiante}"
 				headerText="Seleccionar Estudiante" var="persona"
 				itemStyle="text-align:center" responsive="true">
 				<p:panelGrid columns="2" style="width:100%;margin:10px 0px"
@@ -45,12 +51,12 @@
 					<h:outputText value="Fecha Nacimiento:" />
 					<h:outputText value="#{persona.per_fecha_nacimiento}"
 						style="color:#{car.color}" />
-						
+
 					<h:outputText value="Terapista:" />
-					<h:outputText value="#{persona.personaencargada.per_nombre} #{persona.personaencargada.per_apellido}"
+					<h:outputText
+						value="#{persona.personaencargada.per_nombre} #{persona.personaencargada.per_apellido}"
 						style="color:#{car.color}" />
-						
-						
+
 				</p:panelGrid>
 				<p:growl id="growl" life="2000" />
 				<p:commandButton value="Seleccionar" update="growl"

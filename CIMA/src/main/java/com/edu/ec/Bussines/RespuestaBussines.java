@@ -10,6 +10,7 @@ import com.edu.ec.Dao.RespuestaDao;
 import com.edu.ec.Modelos.Edsm;
 import com.edu.ec.Modelos.Edsm_preguntas;
 import com.edu.ec.Modelos.Nivel_preguntas;
+import com.edu.ec.Modelos.Persona;
 import com.edu.ec.Modelos.Resultados;
 
 @Stateless
@@ -32,6 +33,10 @@ public class RespuestaBussines {
 	
 	public List<Resultados> listarHistorial(Edsm edsm) {
 		return resDao.listarHistorial(edsm);
+	}
+	
+	public List<Resultados> listarhistorialPerosna(Persona persona) {
+		return resDao.listarhistorialPerosna(persona);
 	}
 
 }

@@ -13,62 +13,80 @@ import com.edu.ec.Modelos.Rol;
 
 @Stateless
 public class PersonaDao {
-	
+
 	@Inject
 	private EntityManager em;
-	
-	public void insertPersona(Persona  persona) {
+
+	public void insertPersona(Persona persona) {
 		em.persist(persona);
 	}
-	
+
 	public Persona read(Login id) {
 		Persona aux = em.find(Persona.class, id);
 		System.out.println(aux.getPer_apellido() + aux.getPer_nombre());
 		return aux;
 	}
-	
-	public List<Persona> listarEstudiante(){
+
+	public List<Persona> listarEstudiante() {
 		Rol rol = new Rol();
 		rol.setRol_id(3);
-		
+
 		String jpql = "SELECT n FROM Persona n WHERE n.rol=:rolP ORDER BY n.per_id DESC";
 		Query query = em.createQuery(jpql, Persona.class);
 		query.setParameter("rolP", rol);
 		List<Persona> listadoEstudiantes = query.getResultList();
 		return listadoEstudiantes;
 	}
-	
-	public Persona listarLogin(Login lg){
-		
+
+	public Persona listarLogin(Login lg) {
+
 		String jpql = "SELECT n FROM Persona n WHERE n.login=:rolP ";
 		Query query = em.createQuery(jpql, Persona.class);
 		query.setParameter("rolP", lg);
-		List<Persona> listlogin  = query.getResultList();
+		List<Persona> listlogin = query.getResultList();
 		Persona per = listlogin.get(0);
-		
+
 		return per;
 	}
-	
-	
-	public List<Persona> listarEstudianteHistorial(Persona perencar){
-		
-		String jpql = "SELECT n FROM Persona n WHERE n.personaencargada=:perP ORDER BY n.per_id DESC";
+
+	public List<Persona> listarEstudianteHistorial(Persona perencar) {
+
+		Rol rol = new Rol();
+		rol.setRol_id(3);
+
+		String jpql = "SELECT n FROM Persona n WHERE n.rol=:rolP AND n.personaencargada=:perP ORDER BY n.per_id DESC";
 		Query query = em.createQuery(jpql, Persona.class);
 		query.setParameter("perP", perencar);
+		query.setParameter("rolP", rol);
+		List<Persona> listadoEstudiantes = query.getResultList();
+		return listadoEstudiantes;
+	}
+
+	public List<Persona> BuscarlistarEstudianteHistorial(String apellido, Persona perencar) {
+
+		Rol rol = new Rol();
+		rol.setRol_id(3);
+
+		String jpql = "SELECT n FROM Persona n WHERE n.rol=:rolP AND n.per_apellido LIKE :busAp AND n.personaencargada=:perP ORDER BY n.per_id DESC";
+		Query query = em.createQuery(jpql, Persona.class);
+		query.setParameter("rolP", rol);
+		query.setParameter("perP", perencar);
+		query.setParameter("busAp", "%" + apellido + "%");
 		List<Persona> listadoEstudiantes = query.getResultList();
 		return listadoEstudiantes;
 	}
 	
-public List<Persona> BuscarlistarEstudianteHistorial( String apellido ,Persona perencar){
-		
-		String jpql = "SELECT n FROM Persona n WHERE n.per_apellido LIKE :busAp AND n.personaencargada=:perP ORDER BY n.per_id DESC";
+	public List<Persona> BuscarlistarEstudianteHistorialTodos(String apellido) {
+
+		Rol rol = new Rol();
+		rol.setRol_id(3);
+
+		String jpql = "SELECT n FROM Persona n WHERE n.rol=:rolP AND n.per_apellido LIKE :busAp ORDER BY n.per_id DESC";
 		Query query = em.createQuery(jpql, Persona.class);
-		query.setParameter("perP", perencar);
-		query.setParameter("busAp", "%" +apellido +"%");
+		query.setParameter("rolP", rol);
+		query.setParameter("busAp", "%" + apellido + "%");
 		List<Persona> listadoEstudiantes = query.getResultList();
 		return listadoEstudiantes;
 	}
-	
-	
-	
+
 }

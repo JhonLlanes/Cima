@@ -23,6 +23,9 @@ public class EdsmController {
 	private List <Persona> personaEstudiante;
 	private List <Edsm> listaEdsmEncargado;
 	Edsm edsmIngreso = new Edsm();
+	
+	private String BuscarApellido;
+	
 	public static int id_per_seleccionada;
 	
 	@Inject
@@ -67,6 +70,11 @@ public class EdsmController {
 		
 	}
 	
+	public void BuscarPersonasEdsm() {
+		
+		personaEstudiante = perBus.BuscarlistarEstudianteHistorialTodos(BuscarApellido);
+	}
+	
 	public String desarrollaredsm(Edsm edsmpf) {
 		edsmFav.setEdsm(edsmpf);
 		return "Esm_Preguntas?faces-redirect=true";
@@ -108,5 +116,14 @@ public class EdsmController {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
+
+	public String getBuscarApellido() {
+		return BuscarApellido;
+	}
+
+	public void setBuscarApellido(String buscarApellido) {
+		BuscarApellido = buscarApellido;
+	}
+	
 	
 }

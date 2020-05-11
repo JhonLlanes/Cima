@@ -34,4 +34,8 @@ public class PersonaBussines {
 	public List<Persona> BuscarlistarEstudianteHistorial( String apellido ,Persona perencar){
 		return perDao.BuscarlistarEstudianteHistorial(apellido, perencar);
 	}
+	
+	public List<Persona> BuscarlistarEstudianteHistorialTodos(String apellido) {
+		return perDao.BuscarlistarEstudianteHistorialTodos(apellido);
+	}
 }

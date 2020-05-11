@@ -10,6 +10,7 @@ import javax.persistence.Query;
 import com.edu.ec.Modelos.Edsm;
 import com.edu.ec.Modelos.Edsm_preguntas;
 import com.edu.ec.Modelos.Nivel_preguntas;
+import com.edu.ec.Modelos.Persona;
 import com.edu.ec.Modelos.Resultados;
 
 @Stateless
@@ -40,6 +41,14 @@ public class RespuestaDao {
 		String jpql = "SELECT n FROM Resultados n WHERE n.edsm=:edsmP ORDER BY n.res_id ASC ";
 		Query query = em.createQuery(jpql, Resultados.class);
 		query.setParameter("edsmP", edsm);
+		List<Resultados> ResultadoLista = query.getResultList();
+		return ResultadoLista;
+	}
+	
+	public List<Resultados> listarhistorialPerosna(Persona persona) {
+		String jpql = "SELECT n FROM Resultados n WHERE n.edsm.Persona=:edsmP ORDER BY n.nivel.niv_id ASC ";
+		Query query = em.createQuery(jpql, Resultados.class);
+		query.setParameter("edsmP", persona);
 		List<Resultados> ResultadoLista = query.getResultList();
 		return ResultadoLista;
 	}
