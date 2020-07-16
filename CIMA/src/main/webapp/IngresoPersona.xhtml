@@ -35,15 +35,10 @@
 				<p:password id="contra_res"
 					value="#{personaController.verficar_contra_1}" feedback="true"
 					required="true" >
-					<p:ajax event="keyup" update="out" listener="#{personaController.handleKeyEvent()}" />
 					</p:password>
 				
 				<p:password id="contra"
-					value="#{personaController.verficar_contra}" feedback="true"
-					required="true">
-					
-					<p:ajax event="keyup" update="out" listener="#{personaController.handleKeyEvent()}" />
-					
+					value="#{personaController.verficar_contra}" feedback="true" required="true">
 				</p:password>
 				
 				<h:outputText id="out" value="#{personaController.res_contra}" />

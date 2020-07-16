@@ -3,12 +3,13 @@ package com.edu.ec.Controller;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import com.edu.ec.Bussines.LoginBussines;
 import com.edu.ec.Bussines.PersonaBussines;
-import com.edu.ec.Favorito.EdsmFavorito;
 import com.edu.ec.Favorito.UsuarioFavorito;
 import com.edu.ec.Modelos.Login;
 import com.edu.ec.Modelos.Persona;
@@ -17,9 +18,11 @@ import com.edu.ec.Modelos.Rol;
 @ManagedBean
 public class PersonaController {
 
-	private static String verficar_contra;
-	private static String verficar_contra_1;
-	private String res_contra;
+	private  String verficar_contra;
+	private  String verficar_contra_1;
+	
+	// para mostrar el mensaje 
+	private  String res_contra;
 
 	@Inject
 	private LoginBussines logBus;
@@ -44,16 +47,28 @@ public class PersonaController {
 
 			if (usauriofav.getPersona().getRol().getRol_numero() == 1
 					|| (usauriofav.getPersona().getRol().getRol_numero() == 2)) {
+				System.out.print(res_contra);
+				if (handleKeyEvent() == true) {
+					
+					login.setLog_contrasena(verficar_contra_1);
+					
+					int idLogin = logBus.guardarLogin(login);
+					
+					Login log = new Login();
+					log.setLog_id(idLogin);
+					persona.setLogin(log);
+					persona.setRol(rol);
+					persona.setPersonaencargada(usauriofav.getPersona());
+					
+					perBus.guardarPersona(persona);
+					addMessage("Guardado");
+					return "Edsm?faces-redirect=true";
+					
+				}else {
+					addMessage("ERROR EN LA CONTRASEÑA");
+				}
 
-				int idLogin = logBus.guardarLogin(login);
-				Login log = new Login();
-				log.setLog_id(idLogin);
-				persona.setLogin(log);
-				persona.setRol(rol);
-				persona.setPersonaencargada(usauriofav.getPersona());
-				perBus.guardarPersona(persona);
-				addMessage("Guardado");
-				return "Edsm?faces-redirect=true";
+				
 			} else {
 				addMessage("No puede ingresar a personas");
 
@@ -102,19 +117,28 @@ public class PersonaController {
 		this.verficar_contra = verficar_contra;
 	}
 
-	public void handleKeyEvent() {
+	public boolean handleKeyEvent() {
 		
 		System.out.println(verficar_contra + verficar_contra_1);
 		
 		if (verficar_contra.equals(verficar_contra_1)) {
 			res_contra = "COINCIDE";
-			login.setLog_contrasena(verficar_contra_1);
+			return true;
 		} else {
 			
 			res_contra = "no coinciden";
 		}
+		if (verficar_contra_1.equals(verficar_contra)) {
+			res_contra = "COINCIDE";
+			return true;
+		} else {
+			res_contra = "no coinciden";
+		}
+		
+		return false;
 
 	}
+
 
 	public String getRes_contra() {
 		return res_contra;
