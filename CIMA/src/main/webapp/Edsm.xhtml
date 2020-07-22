@@ -42,6 +42,7 @@
 				<p:panelGrid columns="2" style="width:100%;margin:10px 0px"
 					columnClasses="label,value" layout="grid"
 					styleClass="ui-panelgrid-blank">
+					
 					<h:outputText value="Nombre:" />
 					<h:outputText value="#{persona.per_nombre}" />
 
@@ -56,17 +57,21 @@
 					<h:outputText
 						value="#{persona.personaencargada.per_nombre} #{persona.personaencargada.per_apellido}"
 						style="color:#{car.color}" />
+						
 
 				</p:panelGrid>
 				<p:growl id="growl" life="2000" />
+				
 				<p:commandButton value="Seleccionar" update="growl"
 					action="#{edsmController.Guardar(persona)}"
 					style="margin-right:20px;" styleClass="ui-priority-primary" />
+					<br/>
 			</p:carousel>
+			<br/>
 			<center>
-				<p:commandButton value="Guardar" update="@form"
+				<p:commandButton value="Guardar" 
 					action="#{edsmController.craerEdsm()}" style="margin-right:20px;"
-					styleClass="ui-priority-primary" />
+					styleClass="ui-priority-primary" update="@form" />
 			</center>
 
 		</p:panel>
