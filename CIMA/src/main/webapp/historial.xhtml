@@ -19,6 +19,9 @@
 
 			Sesión:
 			<p:outputLabel value="#{sesionesController.sesion}" />
+			&nbsp;
+			<p:commandButton value="CERRAR SESION" action="#{logout.salir()}"
+				style="margin-right:1px;" ajax="false" />
 
 		</div>
 		<br />
@@ -86,15 +89,43 @@
 		</p:stack>
 
 
-		<h:commandLink>
-			<p:graphicImage value="/resources/pdf.png" />
-			<p:dataExporter type="pdf" target="tbl" fileName="Reporte" encoding="utf8" />
-		</h:commandLink>
-
 		<p:commandButton value="Export as xls" ajax="false">
-			<p:dataExporter type="xls" target="tbl1" fileName="ReporteXls" postProcessor="#{resultadoController.postProcessXLS}"/>
+			<p:dataExporter type="xls" target="tbl1" fileName="ReporteXls"
+				postProcessor="#{resultadoController.postProcessXLS}" />
 		</p:commandButton>
 
+
+		<p:dataTable id="todoexp" var="car"
+			value="#{resultadoController.listaANP}">
+			<p:column headerText="Nivel" groupRow="true">
+				<h:outputText value="#{car.nivel}" />
+			</p:column>
+
+			<p:column headerText="Categoria pregunta" groupRow="true">
+				<h:outputText value="#{car.categoria_pregunta}" />
+			</p:column>
+
+			<p:column headerText="Pregunta">
+				<h:outputText value="#{car.pregunta}" />
+			</p:column>
+
+			<p:column headerText="Observador">
+				<h:outputText value="#{car.observador}" />
+			</p:column>
+
+			<p:column headerText="Padre">
+				<h:outputText value="#{car.padre}" />
+			</p:column>
+			
+			<p:column headerText="Valor">
+				<h:outputText value="#{car.valor}" />
+			</p:column>
+		</p:dataTable>
+
+		<p:commandButton value="Export a Excel" ajax="false">
+			<p:dataExporter type="xls" target="todoexp" fileName="Reporte"
+				postProcessor="#{resultadoController.postProcessXLS}" />
+		</p:commandButton>
 
 	</h:form>
 

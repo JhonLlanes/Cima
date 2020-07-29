@@ -7,7 +7,7 @@
 
 <h:head>
 
-	<title>Resultados</title>
+	<title>RESULTADOS</title>
 
 </h:head>
 <body>
@@ -20,6 +20,7 @@
 
 			Sesión:
 			<p:outputLabel value="#{sesionesController.sesion}" />
+			&nbsp;
 
 		</div>
 		<br />
@@ -47,6 +48,12 @@
 		<p:dataTable var="car"
 			value="#{edsmResultadosController.edsmResultados}"
 			stickyHeader="true" stickyTopAt=".layout-topbar">
+			
+			<p:column headerText="Area" groupRow="true"
+			style="width:100px; font-size:12px ;text-align: center"
+			>
+				<h:outputText value="#{car.area}" />
+			</p:column>
 
 			<p:column headerText="Pregunta">
 				<h:outputText value="#{car.pregunta}" />

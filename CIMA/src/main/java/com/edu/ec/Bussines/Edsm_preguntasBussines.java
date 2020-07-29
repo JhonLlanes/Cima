@@ -59,6 +59,8 @@ public class Edsm_preguntasBussines {
 		int A = 0;
 		int N = 0;
 		int P = 0;
+		int NA = 0;
+		
 
 		List<EdsmPreguntasResultados> resultados = new ArrayList<>();
 		try {
@@ -68,6 +70,7 @@ public class Edsm_preguntasBussines {
 			for (Edsm_preguntas edsm_preguntas2 : edsm_preguntas) {
 
 				EdsmPreguntasResultados er = new EdsmPreguntasResultados();
+				er.setArea(edsm_preguntas2.getPreguntas().getPre_nombre());
 				er.setPregunta(edsm_preguntas2.getPreguntas().getPre_descripcion());
 				er.setObservador(edsm_preguntas2.getEds_pre_observador());
 				er.setPadre(edsm_preguntas2.getEds_pre_informador());
@@ -76,14 +79,14 @@ public class Edsm_preguntasBussines {
 						|| edsm_preguntas2.getEds_pre_informador().equals(null)
 						|| edsm_preguntas2.getEds_pre_observador().equals("")
 						|| edsm_preguntas2.getEds_pre_observador().equals("+/-")
-						|| edsm_preguntas2.getEds_pre_observador().equals("NA")
 						|| edsm_preguntas2.getEds_pre_informador().equals("")
 						|| edsm_preguntas2.getEds_pre_informador().equals("+/-")
-						|| edsm_preguntas2.getEds_pre_informador().equals("NA")) {
+						 ) {
 					er.setValor("P");
 					P++;
 
 				} else {
+					
 
 					if (edsm_preguntas2.getEds_pre_observador().equals("+")
 							&& edsm_preguntas2.getEds_pre_informador().equals("+")) {
@@ -101,7 +104,12 @@ public class Edsm_preguntasBussines {
 							&& edsm_preguntas2.getEds_pre_informador().equals("+")) {
 						er.setValor("P");
 						P++;
+					} else if (edsm_preguntas2.getEds_pre_observador().equals("NA") && 
+							edsm_preguntas2.getEds_pre_informador().equals("NA")) {
+						er.setValor("NA");
+						NA++;
 					}
+					
 				}
 
 				resultados.add(er);
@@ -143,6 +151,54 @@ public class Edsm_preguntasBussines {
 					er.setValor("N");
 					resultados.add(er);
 				}
+			}
+
+		} catch (
+
+		Exception e) {
+			System.err.println("______________________________");
+			e.printStackTrace();
+		}
+		return resultados;
+	}
+	
+	public List<EdsmPreguntasResultados> Listartodos(Edsm edsm) {
+		List<EdsmPreguntasResultados> resultados = new ArrayList<>();
+		try {
+
+			List<Edsm_preguntas> edsm_preguntas = edsmpreDao.ListarNegativos(edsm);
+
+			for (Edsm_preguntas edsm_preguntas2 : edsm_preguntas) {
+
+				EdsmPreguntasResultados er = new EdsmPreguntasResultados();
+				
+				if (edsm_preguntas2.getEds_pre_observador().equals("-")	&& edsm_preguntas2.getEds_pre_informador().equals("-")) {
+					er.setNivel(edsm_preguntas2.getPreguntas().getNivel().getNiv_nombre());
+					er.setCategoria_pregunta(edsm_preguntas2.getPreguntas().getPre_nombre());
+					er.setPregunta(edsm_preguntas2.getPreguntas().getPre_descripcion());
+					er.setObservador(edsm_preguntas2.getEds_pre_observador());
+					er.setPadre(edsm_preguntas2.getEds_pre_informador());
+					er.setValor("N");
+					resultados.add(er);
+				}
+				if (edsm_preguntas2.getEds_pre_observador().equals("+")	&& edsm_preguntas2.getEds_pre_informador().equals("+")) {
+					er.setNivel(edsm_preguntas2.getPreguntas().getNivel().getNiv_nombre());
+					er.setCategoria_pregunta(edsm_preguntas2.getPreguntas().getPre_nombre());
+					er.setPregunta(edsm_preguntas2.getPreguntas().getPre_descripcion());
+					er.setObservador(edsm_preguntas2.getEds_pre_observador());
+					er.setPadre(edsm_preguntas2.getEds_pre_informador());
+					er.setValor("A");
+					resultados.add(er);
+				}
+				if (edsm_preguntas2.getEds_pre_observador().equals("+/-")	&& edsm_preguntas2.getEds_pre_informador().equals("+/-")) {
+					er.setNivel(edsm_preguntas2.getPreguntas().getNivel().getNiv_nombre());
+					er.setCategoria_pregunta(edsm_preguntas2.getPreguntas().getPre_nombre());
+					er.setPregunta(edsm_preguntas2.getPreguntas().getPre_descripcion());
+					er.setObservador(edsm_preguntas2.getEds_pre_observador());
+					er.setPadre(edsm_preguntas2.getEds_pre_informador());
+					er.setValor("P");
+					resultados.add(er);
+				}	
 			}
 
 		} catch (

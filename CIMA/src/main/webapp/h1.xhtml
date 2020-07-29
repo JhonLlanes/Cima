@@ -22,6 +22,9 @@
 		<div align="right">
 			Sesión:
 			<p:outputLabel value="#{sesionesController.sesion}" />
+			&nbsp;
+			<p:commandButton value="CERRAR SESION"  action="#{logout.salir()}" style="margin-right:1px;" ajax="false" />
+			
 		</div>
 		<br />
 

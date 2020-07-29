@@ -23,10 +23,10 @@ public class EdsmController {
 	private List <Persona> personaEstudiante;
 	private List <Edsm> listaEdsmEncargado;
 	Edsm edsmIngreso = new Edsm();
+	private static  Persona pernueva = new Persona();
 	
 	private String BuscarApellido;
 	
-	public static int id_per_seleccionada;
 	
 	@Inject
 	private PersonaBussines perBus;
@@ -50,21 +50,25 @@ public class EdsmController {
 	}	
 	
 	public void Guardar(Persona persona) {
-		id_per_seleccionada = persona.getPer_id();
+		
+		pernueva = persona;
+		System.out.println(persona.getPer_nombre() + persona.getPer_apellido() + "ID= "+ persona.getPer_id());
+		
 		addMessage("Ha selccionadado a: " +persona.getPer_nombre() +" "+ persona.getPer_apellido());
 	}
 	public void craerEdsm() {
 		try {
+			System.out.println(pernueva.getPer_id());
 			ValidacionesUtil valida = new ValidacionesUtil();
-			Persona est = new Persona();
-			est.setPer_id(id_per_seleccionada);
 			edsmIngreso.setEds_fecha(valida.fechaactual());
-			edsmIngreso.setPersona(est);
+			edsmIngreso.setPersona(pernueva);
 			edsmIngreso.setPersona_encargada(usauriofav.getPersona());
 			edsmPreBus.ingresar(edsmBus.crearEdsm(edsmIngreso));
 			listaEdsmEncargado = edsmBus.listarEdsm(usauriofav.getPersona());
 			addMessage("Guardado");
 		} catch (Exception e) {
+			
+			e.printStackTrace();
 			addMessage("Error");
 		}
 		
@@ -124,6 +128,17 @@ public class EdsmController {
 	public void setBuscarApellido(String buscarApellido) {
 		BuscarApellido = buscarApellido;
 	}
+
+	public Persona getPernueva() {
+		return pernueva;
+	}
+
+	public static void setPernueva(Persona pernueva) {
+		EdsmController.pernueva = pernueva;
+	}
+
+
+	
 	
 	
 }
