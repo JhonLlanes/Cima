@@ -3,6 +3,7 @@ package com.edu.ec.Favorito;
 public class EdsmPreguntasResultados {
 
 	private String nivel;
+	private String area;
 	private String categoria_pregunta;
 	private String pregunta;
 	private String observador;
@@ -43,5 +44,13 @@ public class EdsmPreguntasResultados {
 	}
 	public void setCategoria_pregunta(String categoria_pregunta) {
 		this.categoria_pregunta = categoria_pregunta;
-	}	
+	}
+	public String getArea() {
+		return area;
+	}
+	public void setArea(String area) {
+		this.area = area;
+	}
+	
+	
 }

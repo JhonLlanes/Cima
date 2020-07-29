@@ -68,6 +68,7 @@ public class Edsm_preguntasBussines {
 			for (Edsm_preguntas edsm_preguntas2 : edsm_preguntas) {
 
 				EdsmPreguntasResultados er = new EdsmPreguntasResultados();
+				er.setArea(edsm_preguntas2.getPreguntas().getPre_nombre());
 				er.setPregunta(edsm_preguntas2.getPreguntas().getPre_descripcion());
 				er.setObservador(edsm_preguntas2.getEds_pre_observador());
 				er.setPadre(edsm_preguntas2.getEds_pre_informador());
