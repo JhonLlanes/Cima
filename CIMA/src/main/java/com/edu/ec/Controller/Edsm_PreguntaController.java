@@ -87,14 +87,14 @@ public class Edsm_PreguntaController {
 				if (ingresar.getEds_pre_informador() == null) {
 
 					System.out.println("si");
-					ingresar.setEds_pre_informador("");
+					ingresar.setEds_pre_informador("X");
 
 				} else {
 				}
 				if (ingresar.getEds_pre_observador() == null) {
 
 					System.out.println("si");
-					ingresar.setEds_pre_observador("");
+					ingresar.setEds_pre_observador("X");
 
 				} else {
 				}

@@ -27,6 +27,7 @@ public class ResultadoController {
 	private List<Resultados> ListaRespuestas;
 
 	private List<EdsmPreguntasResultados> listaNo;
+	private List<EdsmPreguntasResultados> listaANP;
 
 	@Inject
 	private RespuestaBussines respBussines;
@@ -42,6 +43,7 @@ public class ResultadoController {
 
 		ListaRespuestas = respBussines.listarHistorial(edsmFav.getEdsm());
 		listaNo = edsmpreguntasBussines.Listarnegativos(edsmFav.getEdsm());
+		listaANP  = edsmpreguntasBussines.Listartodos(edsmFav.getEdsm());
 	}
 
 	public List<Resultados> getListaRespuestas() {
@@ -58,6 +60,15 @@ public class ResultadoController {
 
 	public void setListaNo(List<EdsmPreguntasResultados> listaNo) {
 		this.listaNo = listaNo;
+	}
+	
+
+	public List<EdsmPreguntasResultados> getListaANP() {
+		return listaANP;
+	}
+
+	public void setListaANP(List<EdsmPreguntasResultados> listaANP) {
+		this.listaANP = listaANP;
 	}
 
 	public void postProcessXLS(Object document) {

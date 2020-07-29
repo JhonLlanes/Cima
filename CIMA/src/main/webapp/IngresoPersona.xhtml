@@ -17,7 +17,9 @@
 		<p:growl id="growl" life="2000" />
 		<div align="right">
 			Sesión:
-			<p:outputLabel value="#{sesionesController.sesion}" />	
+			<p:outputLabel value="#{sesionesController.sesion}" />
+			&nbsp;
+			<p:commandButton value="CERRAR SESION"  action="#{logout.salir()}" style="margin-right:1px;" ajax="false" />	
 		</div>
 		<br />
 
